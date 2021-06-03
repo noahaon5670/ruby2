@@ -31,7 +31,11 @@ class LookThatWay
   def get_cpu_move(str)
     isLoop = true
     while isLoop
-      @cpu_move = rand(4)
+      if(str == "rps") then
+        @cpu_move = rand(3)
+      else
+        @cpu_move = rand(4)
+      end
       if !(@player_move == @cpu_move) || str == "ltw" then
         isLoop = false
       end
@@ -41,25 +45,18 @@ class LookThatWay
   def judge(str)
     case str
     when "rps"
-      if @player_move == 3 || @cpu_move == 3 then
-        if @player_move == 3 then
-          @actuve = false
-        else
-          @actuve = true
-        end
+      if @player_move == 3 then
+        @active = false
+      elsif @cpu_move == 3 then
+        @active = true
       elsif @cpu_move - @player_move == 1 || @cpu_move - @player_move == -2 then
-        @actuve = true
+        @active = true
       else
-        @actuve = false
+        @active = false
       end
     when "ltw"
       if @player_move == @cpu_move then
         @isLoopToLTW = false
-        if @actuve then
-          @result = true
-        else
-          @result = false
-        end
       else
       end
     end
@@ -98,14 +95,14 @@ class LookThatWay
     puts "相手  :#{move_to_game(str, @cpu_move)}"
     case str
     when "rps"
-      if @actuve then
+      if @active then
         puts "あなたが攻撃側です"
       else
         puts "あなたが防御側です"
       end
     when "ltw"
       if !@isLoopToLTW then
-        if @result then
+        if @active then
           puts "あなたの勝利です!!"
         else
           puts "あなたの敗北です..."
