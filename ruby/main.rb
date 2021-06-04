@@ -95,14 +95,7 @@ class LookThatWay
     when "rps"
       puts @active ? "あなたが攻撃側です" : "あなたが防御側です"
     when "ltw"
-      
       puts !@isLoopToLTW ? ( @active ? "あなたの勝利です!!" : "あなたの敗北です...") : "もう一回"
-      
-      # if !@isLoopToLTW then
-      #   puts @active ? "あなたの勝利です!!" : "あなたの敗北です..."
-      # else
-      #   puts "もう一回"
-      # end
     end
   end
   
