@@ -46,9 +46,7 @@ class LookThatWay
     case str
     when "rps"
       if @player_move == 3 then
-        @active = false
-      elsif @cpu_move == 3 then
-        @active = true
+        exit
       elsif @cpu_move - @player_move == 1 || @cpu_move - @player_move == -2 then
         @active = true
       else
@@ -95,21 +93,16 @@ class LookThatWay
     puts "相手  :#{move_to_game(str, @cpu_move)}"
     case str
     when "rps"
-      if @active then
-        puts "あなたが攻撃側です"
-      else
-        puts "あなたが防御側です"
-      end
+      puts @active ? "あなたが攻撃側です" : "あなたが防御側です"
     when "ltw"
-      if !@isLoopToLTW then
-        if @active then
-          puts "あなたの勝利です!!"
-        else
-          puts "あなたの敗北です..."
-        end
-      else
-        puts "もう一回"
-      end
+      
+      puts !@isLoopToLTW ? ( @active ? "あなたの勝利です!!" : "あなたの敗北です...") : "もう一回"
+      
+      # if !@isLoopToLTW then
+      #   puts @active ? "あなたの勝利です!!" : "あなたの敗北です..."
+      # else
+      #   puts "もう一回"
+      # end
     end
   end
   
